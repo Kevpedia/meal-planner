@@ -1,0 +1,86 @@
+{ "recipes":[
+{
+  "name": "Home Made Pizza",
+  "ingredients": ["flour","oil","yeast","salt","water","sauce"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Make the pizza"
+},
+{
+  "name": "Korean Beef",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "French Onion Soup",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "Spaghetti Squash Casserole",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "Home Made Pizza",
+  "ingredients": ["flour","oil","yeast","salt","water","sauce"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Make the pizza"
+},
+{
+  "name": "Korean Beef",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "French Onion Soup",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "Spaghetti Squash Casserole",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "Home Made Pizza",
+  "ingredients": ["flour","oil","yeast","salt","water","sauce"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Make the pizza"
+},
+{
+  "name": "Korean Beef",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "French Onion Soup",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+},
+{
+  "name": "Spaghetti Squash Casserole",
+  "ingredients": ["beef","ginger","oil","rice","water","coconut aminos"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Cook it"
+}
+]}

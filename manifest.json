@@ -1,0 +1,7 @@
+{
+  "name": "meal-planner",
+  "short_name": "meal-planner",
+  "description": "plan your meals",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,21 @@
+{ "countrycodes":[
+{ 
+  "name": "Home Made Pizza",
+  "ingredients": ["flour","oil","yeast","salt","water","sauce"],
+  "prepTime": "00:45",
+  "cookTime": "00:12",
+  "instructions": "Make the pizza"
+},
+{ 
+  "code": "AL",
+  "name": "Albania"
+},
+{ 
+  "code": "DZ",
+  "name": "Algeria"
+},
+{ 
+  "code": "AS",
+  "name": "American Samoa"
+}
+]}

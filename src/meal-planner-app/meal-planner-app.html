@@ -1,0 +1,132 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+
+<dom-module id="meal-planner-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: Roboto, Noto, sans-serif;
+      }
+
+      body {
+          /* No margin on body so toolbar can span the screen */
+          margin: 0;
+        }
+
+      app-toolbar {
+          /* Toolbar is the main header, so give it some color */
+          background-color: #1E88E5;
+          font-family: 'Roboto', Noto, sans-serif;
+          color: white;
+          --app-toolbar-font-size: 24px;
+        }
+      paper-button {
+        /*margin-left: 20px;*/
+      }
+
+      #recipesList {
+        flex: 1 1 auto;
+        padding-left: 20px;
+        --iron-list-items-container: {
+          margin: auto;
+        };
+      }
+
+      .item {
+          @apply --layout-horizontal;
+          cursor: pointer;
+          padding: 16px 22px;
+          border-bottom: 1px solid #DDD;
+        }
+
+      .item.selected {
+        outline: 0;
+        background-color: #ddd;
+      }
+
+      .no-selection {
+          color: #999;
+          margin-left: 10px;
+          line-height: 50px;
+        }
+
+      #message {
+        margin-left: 20px;
+      }
+    </style>
+    <app-header-layout>
+      <app-header fixed effects="waterfall" slot="header">
+        <app-toolbar>
+          <div main-title>Plan Your Meals</div>
+          <h3>[[selectedRecipes.length]]</h3>
+        </app-toolbar>
+      </app-header>
+      <iron-ajax
+        auto
+        url="data/recipes.json"
+        handle-as="json"
+        on-response="_handleResponse"></iron-ajax>
+      <div>
+        <iron-list id="recipesList" items="[[recipes]]" as="recipe" selected-items="{{selectedRecipes}}" selection-enabled multi-selection>
+          <template>
+            <div tabindex$="[[tabIndex]]" class$="[[_computedClass(selected)]]">
+              <p>[[recipe.name]] - [[selected]]</p>
+            </div>
+          </template>
+        </iron-list>
+      </div>
+    </app-header-layout>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class MealPlannerApp extends Polymer.Element {
+      static get is() { return 'meal-planner-app'; }
+      static get properties() {
+        return {
+          recipes: {
+            type: Object
+          },
+          selectedRecipes: {
+            type: Object
+          }
+        };
+      }
+
+      _handleResponse(event) {
+        this.recipes = event.detail.response.recipes;
+        this.prop1 = `First Recipe in List: ${this.recipes[0].name}`;
+        console.log(event.detail.response);
+      }
+
+      _onClick(event) {
+        let clickedButton = event.target;
+        this.prop1 = "test";
+      }
+
+      _unselect(e) {
+        this.$.itemsList.deselectItem(e.model.item);
+      }
+
+      _computedClass(isSelected) {
+        var classes = 'item';
+        if (isSelected) {
+          classes += ' selected';
+        }
+        return classes
+      }
+    }
+
+    window.customElements.define(MealPlannerApp.is, MealPlannerApp);
+  </script>
+</dom-module>
