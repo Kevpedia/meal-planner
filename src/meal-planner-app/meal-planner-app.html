@@ -77,7 +77,7 @@
         <iron-list id="recipesList" items="[[recipes]]" as="recipe" selected-items="{{selectedRecipes}}" selection-enabled multi-selection>
           <template>
             <div tabindex$="[[tabIndex]]" class$="[[_computedClass(selected)]]">
-              <p>[[recipe.name]] - [[selected]]</p>
+              <p>[[recipe.name]]</p>
             </div>
           </template>
         </iron-list>
