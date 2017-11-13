@@ -1,11 +1,17 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/app-layout/app-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
 <link rel="import" href="../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-styles/color.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-tab/paper-tab.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 
 <dom-module id="meal-planner-app">
   <template>
@@ -20,9 +26,38 @@
           margin: 0;
         }
 
+      paper-tabs {
+	    font-family: 'Roboto', 'Noto', sans-serif;
+	    -webkit-font-smoothing: antialiased;
+	    width: 100%;
+	    text-transform: uppercase;
+	    color: white;
+	    /*background-color: #1E88E5;*/
+	  }
+
+      paper-fab {
+      	display: inline-block;
+      	margin: 8px;
+      	color: white;
+      	vertical-align: bottom;
+      	--paper-fab-background: #1E88E5;
+      }
+
+      paper-fab:hover {
+      	--paper-fab-background: green;
+      }
+
+      app-header {
+      	background-color: #1E88E5;
+      	--app-header-background-rear-layer: {
+		    /* The header is #009688 when condensed */
+		    background-color: #009688;
+		  };
+      }
+
       app-toolbar {
           /* Toolbar is the main header, so give it some color */
-          background-color: #1E88E5;
+          /*background-color: #1E88E5;*/
           font-family: 'Roboto', Noto, sans-serif;
           color: white;
           --app-toolbar-font-size: 24px;
@@ -62,26 +97,39 @@
       }
     </style>
     <app-header-layout>
-      <app-header fixed effects="waterfall" slot="header">
+      <app-header fixed condenses effects="waterfall" blend-background slot="header">
         <app-toolbar>
           <div main-title>Plan Your Meals</div>
           <h3>[[selectedRecipes.length]]</h3>
         </app-toolbar>
+        <paper-tabs selected="{{selectedTab}}" autoselect fallbackSelection="Meals" sticky>
+        	<paper-tab active="true">Meals</paper-tab>
+        	<paper-tab>Plan</paper-tab>
+        </paper-tabs>
       </app-header>
       <iron-ajax
         auto
         url="data/recipes.json"
         handle-as="json"
         on-response="_handleResponse"></iron-ajax>
-      <div>
-        <iron-list id="recipesList" items="[[recipes]]" as="recipe" selected-items="{{selectedRecipes}}" selection-enabled multi-selection>
-          <template>
-            <div tabindex$="[[tabIndex]]" class$="[[_computedClass(selected)]]">
-              <p>[[recipe.name]]</p>
-            </div>
-          </template>
-        </iron-list>
-      </div>
+      <iron-pages selected="{{selectedTab}}">
+		  <div id="meals-page">
+		  	<!-- Meals Page -->
+		  	<paper-fab icon="add"></paper-fab>
+		  	<div>
+			    <iron-list id="recipesList" items="[[recipes]]" as="recipe" selected-items="{{selectedRecipes}}" selection-enabled multi-selection>
+			      <template>
+			        <div tabindex$="[[tabIndex]]" class$="[[_computedClass(selected)]]">
+			          <p>[[recipe.name]]</p>
+			        </div>
+			      </template>
+			    </iron-list>
+			</div>
+		  </div>
+		  <div id="plan-page">
+		  	<!-- Plan Page -->
+		  </div>
+      </iron-pages>
     </app-header-layout>
   </template>
 
@@ -99,6 +147,10 @@
           },
           selectedRecipes: {
             type: Object
+          },
+          selectedTab: {
+          	type: String,
+          	value: "Meals"
           }
         };
       }
